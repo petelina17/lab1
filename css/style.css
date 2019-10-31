@@ -1,18 +1,90 @@
+@font-face {
+  font-family: 'MyHorrorFont';
+  src: url('../fonts/youmurder.ttf') format('truetype');
+}
+
+* {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background-image: url("../img/hallowee.jpg") ;
+  background: black;
+  background-image: url("../img/halloween-1702531_1920.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 0 -400px;
+  background-position: center center;
+  /*background-position: 0 -400px;*/
 }
 
 #wrapper {
   min-width: 800px;
+  height: 100%;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+
+
 }
 
 #logo {
-  /*margin-top: 100px;*/
+  margin: auto;
+  margin-top: 30px;
+  text-align: center;
+
+}
+
+.welcome {
+  width: 65%;
+  max-width: 700px;
+}
+
+#startButton {
   margin: auto;
   text-align: center;
+}
+
+.pumpkin {
+  width: 350px;
+  height: 300px;
+  background-image: url("../img/pumpkinn.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin: auto;
+  cursor: pointer;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+.play {
+  font-size: 140px;
+  font-weight: bolder;
+  color: rgb(151, 0, 16);
+  padding-top: 50px;
+  font-family: MyHorrorFont, sans-serif;
+}
+
+.bounce-6 {
+  animation-name: bounce-6;
+  animation-timing-function: ease;
+}
+
+@keyframes bounce-6 {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.05, .95) translateY(0);
+  }
+  30% {
+    transform: scale(.95, 1.05) translateY(-30px);
+  }
+  50% {
+    transform: scale(1.05, .95) translateY(0);
+  }
 }
