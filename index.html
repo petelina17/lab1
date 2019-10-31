@@ -17,11 +17,23 @@
     <div id="logo">
       <img class="welcome" src="img/logo1.gif" alt="welcome"/>
     </div>
-    <div id="startButton" class="buttons" onclick="beginGame()">
-      <div class="pumpkin bounce-6">
+    <div id="startBlock">
+      <div class="pumpkin bounce-6" onclick="beginGame()">
         <div class="play">PLAY</div>
       </div>
       <!--      <img src="img/pumpkin.png" width="400" alt="button"/>-->
+    </div>
+
+    <div id="question" class="question" hidden>
+      <span>How du u do?</span>
+    </div>
+
+
+    <div id="answer" hidden>
+      <div class="answer">
+        <input type="text" placeholder="answer here ...">
+      </div>
+      <div class="input-hint">when ready press Enter</div>
     </div>
   </div>
 
