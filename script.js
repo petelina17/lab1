@@ -74,20 +74,48 @@ function checkAnswer(event) {
  */
 function gameOver(win) {
     if (win) {
-        alert('YOU WERE LUCKY... THIS TIME!!! GAME OVER!');
+        // alert('YOU WERE LUCKY... THIS TIME!!! GAME OVER!');
+        goodFinal();
     } else {
-        alert('YOU LOOSE... GAME OVER!!!');
+        // alert('YOU LOOSE... GAME OVER!!!');
+        badFinal();
     }
+    // resetGame();
+}
+
+function resetGame() {
     const welcome = document.getElementById('logo');
     welcome.hidden = false;
     const pumpkin = document.getElementById('startBlock');
     pumpkin.hidden = false;
 
+    cleanScreen();
+    round = 0;
+}
+
+function cleanScreen() {
     questionElement = document.getElementById('question');
     questionElement.hidden = true;
-
     document.getElementById('answer').hidden = true;
-    round = 0;
+}
+
+function goodFinal() {
+    cleanScreen();
+    document.getElementById('goodbye').hidden = false;
+    document.getElementById('finalScene').hidden = false;
+    document.getElementById('finalScene').style.height = '600px';
+    document.getElementById('finalScene').classList.add('witch2');
+    document.getElementById('goodbye').innerText = 'YOU WON!!!'
+}
+
+
+function badFinal() {
+    cleanScreen();
+    document.getElementById('goodbye').hidden = false;
+    document.getElementById('finalScene').hidden = false;
+    document.getElementById('finalScene').style.height = '600px';
+    document.getElementById('finalScene').classList.add('witch1');
+    document.getElementById('goodbye').innerText = 'YOU LOOSE ...'
 }
 
 
@@ -127,7 +155,7 @@ const questions = [
  */
 const answers = [
     {text: ['yes'], nextRound: [1]},
-    {text: ['playing'], nextRound: [2]},
+    {text: ['playing','play','not know'], nextRound: [2,2,2]},
     {text: ['yes'], nextRound: [3]},
     {text: ['tree', 'pumpkin'], nextRound: [200, 100]}
 ];

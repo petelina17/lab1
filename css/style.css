@@ -68,12 +68,12 @@ body {
   font-family: MyHorrorFont, sans-serif;
 }
 
-.bounce-6 {
-  animation-name: bounce-6;
+.moving {
+  animation-name: moving;
   animation-timing-function: ease;
 }
 
-@keyframes bounce-6 {
+@keyframes moving {
   0% {
     transform: scale(1, 1) translateY(0);
   }
@@ -132,4 +132,33 @@ body {
   color: red;
   font-size: 2rem;
   padding: 10px;
+}
+
+#finalScene {
+  width: 600px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+#goodbye {
+  font-family: MyHorrorFont, serif;
+  font-size: 8rem;
+  text-align: center;
+  color: red;
+}
+
+.witch1 {
+  display: inline-block;
+  background-image: url("../img/witch1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.witch2 {
+  display: inline-block;
+  background-image: url("../img/witch2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
