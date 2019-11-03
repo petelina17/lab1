@@ -1,20 +1,16 @@
 /**
- *
+ *Play background audio when page is loading
  * @type {HTMLElement}
  */
 const backsound = document.getElementById("audio-welcome");
 window.onload = function () {
     backsound.play();
-
 };
 
-/**
- *
- */
 let questionElement;
 
 /**
- *
+ * Hide welcome-elements and show question
  */
 function beginGame() {
     const welcome = document.getElementById('logo');
@@ -30,8 +26,8 @@ function beginGame() {
 }
 
 /**
- *
- * @param event
+ * Defines is answer correct (expected) or not
+ * @param {Event} event
  */
 function checkAnswer(event) {
     if (event !== undefined) {
@@ -43,30 +39,45 @@ function checkAnswer(event) {
             let userAnswer = event.target.value;
             userAnswer = userAnswer.toLowerCase();
 
+            console.log('user answer', userAnswer);
+
             // clean input field
             event.target.value = '';
 
-            const rightAnswer = answers[round];
+            for (const [index, rightAnswer] of answers[round].text.entries()) {
+                console.log('index, rightAnswer', index, rightAnswer);
 
-            if (userAnswer.includes(rightAnswer)) {
-                round = round + 1;
-                if (round >= questions.length) {
-                    gameOver();
-                    return
+                if (userAnswer.includes(rightAnswer)) {
+                    round = answers[round].nextRound[index];
+
+                    if (round === 100) {
+                        gameOver(true);
+                        return
+                    }
+                    if (round === 200) {
+                        gameOver(false);
+                        return;
+                    }
+
+                    showNextQuestion();
+                    return;
                 }
-                showNextQuestion();
-            } else {
-                alert('Try harder!')
             }
+            alert('Try harder or die!')
         }
     }
 }
 
 /**
- *
+ * Return to the beginning of the game
+ * @param {boolean} win
  */
-function gameOver() {
-    alert('YOU WON!!! GAME OVER!');
+function gameOver(win) {
+    if (win) {
+        alert('YOU WERE LUCKY... THIS TIME!!! GAME OVER!');
+    } else {
+        alert('YOU LOOSE... GAME OVER!!!');
+    }
     const welcome = document.getElementById('logo');
     welcome.hidden = false;
     const pumpkin = document.getElementById('startBlock');
@@ -79,8 +90,9 @@ function gameOver() {
     round = 0;
 }
 
+
 /**
- *
+ * Show question in rounds
  */
 function showNextQuestion() {
     questionElement.innerText = questions[round];
@@ -96,25 +108,28 @@ answerElement.addEventListener('keypress', checkAnswer);
 let round = 0;
 
 /**
- *
- * @type {*[]}
+ *list of questions
+ * @type {string[]}
  */
 const questions = [
-    '1. What is your name?',
-    '2. Where are you from?',
-    '3. How old are you?'
+    'Well hello there... Are you a human?',
+    '?!.. what are you doing here, human?...',
+    'WTH?... And you want to get out of here alive, right?.. HA-HA-HA',
+    'There is the only one way for you to escape: the magic key... go to the cemetery...' +
+    ' the key is hidden in a pumpkin or in a hollow of an old tree...maybe... ' +
+    'What do you choose: tree or pumpkin?!',
 ];
 
 /**
- *
- * @type {*[]}
+ * list of Answers
+ * @type {AnswerObject[]}
+ * @typedef {{text: [string], nextRound: [number]}} AnswerObject
  */
 const answers = [
-    'natalia',
-    'petersburg',
-    '46'
+    {text: ['yes'], nextRound: [1]},
+    {text: ['playing'], nextRound: [2]},
+    {text: ['yes'], nextRound: [3]},
+    {text: ['tree', 'pumpkin'], nextRound: [200, 100]}
 ];
 
-// var visitor = prompt("Well hello there...What's your name?");
-// var message = 'Well, well, do you want to get out of here alive?, visitor';
-// document.write(massage);
+
