@@ -1,5 +1,5 @@
 /**
- *Play background audio when page is loading
+ * Play background audio when page is loading
  * @type {HTMLElement}
  */
 const backsound = document.getElementById("audio-welcome");
@@ -10,7 +10,7 @@ window.onload = function () {
 let questionElement;
 
 /**
- * Hide welcome-elements and show question
+ * Hide welcome-elements and show question and answer field
  */
 function beginGame() {
     const welcome = document.getElementById('logo');
@@ -26,7 +26,12 @@ function beginGame() {
 }
 
 /**
- * Defines is answer correct (expected) or not
+ * Define is answer correct (expected) or not
+ * matching possible right answers to user input.
+ * If user did right answer, go to next round depends on the answer.
+ * If user won game over with success.
+ * If user lost game over with failure.
+ * If user did unrecognized answer show alert to try again.
  * @param {Event} event
  */
 function checkAnswer(event) {
@@ -69,20 +74,20 @@ function checkAnswer(event) {
 }
 
 /**
- * Return to the beginning of the game
- * @param {boolean} win
+ * Switch to success or fail final scene.
+ * @param {boolean} win - indicates if user won or not.
  */
 function gameOver(win) {
     if (win) {
-        // alert('YOU WERE LUCKY... THIS TIME!!! GAME OVER!');
         goodFinal();
     } else {
-        // alert('YOU LOOSE... GAME OVER!!!');
         badFinal();
     }
-    // resetGame();
 }
 
+/**
+ * Activate start to play.
+ */
 function resetGame() {
     const welcome = document.getElementById('logo');
     welcome.hidden = false;
@@ -93,12 +98,18 @@ function resetGame() {
     round = 0;
 }
 
+/**
+ * Hide question and answer areas.
+ */
 function cleanScreen() {
     questionElement = document.getElementById('question');
     questionElement.hidden = true;
     document.getElementById('answer').hidden = true;
 }
 
+/**
+ * Show successful final scene.
+ */
 function goodFinal() {
     cleanScreen();
     document.getElementById('goodbye').hidden = false;
@@ -108,7 +119,9 @@ function goodFinal() {
     document.getElementById('goodbye').innerText = 'YOU WON!!!'
 }
 
-
+/**
+ *  Show fail final scene.
+ */
 function badFinal() {
     cleanScreen();
     document.getElementById('goodbye').hidden = false;
@@ -120,23 +133,31 @@ function badFinal() {
 
 
 /**
- * Show question in rounds
+ * Show question in rounds.
  */
 function showNextQuestion() {
     questionElement.innerText = questions[round];
 }
 
 /**
- *
+ * Text field for user input.
  * @type {HTMLElement}
  */
 const answerElement = document.getElementById('answer');
+
+/**
+ * Assign function to event when user press a button.
+ */
 answerElement.addEventListener('keypress', checkAnswer);
 
+/**
+ * Global current round of the game.
+ * @type {number}
+ */
 let round = 0;
 
 /**
- *list of questions
+ *list of questions.
  * @type {string[]}
  */
 const questions = [
@@ -149,7 +170,8 @@ const questions = [
 ];
 
 /**
- * list of Answers
+ * list of Answers.
+ * It might be more than one correct answer.
  * @type {AnswerObject[]}
  * @typedef {{text: [string], nextRound: [number]}} AnswerObject
  */

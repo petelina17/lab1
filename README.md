@@ -2,12 +2,9 @@
 
 ###### Author: Natalia Petelina (petelina17@gmail.com)
 
-This simple text-based game was created in  
-
-order to practice in developing a text-based interactive experience  
-  
-with help of javascript, where the user can make changes  
-
+This simple text-based game was created in
+order to practice in developing a text-based interactive experience
+with help of javascript, where the user can make changes 
 in a fictional world.  
 
 Enjoy!
